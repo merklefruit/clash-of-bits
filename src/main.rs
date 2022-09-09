@@ -86,6 +86,11 @@ fn main() {
             if counter % 100000 == 0 {
                 println!("{} lookups", counter);
             }
+
+            if counter > args.limit {
+                println!("Reached limit of {} lookups", counter);
+                break;
+            }
         }));
     }
 
