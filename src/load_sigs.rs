@@ -1,9 +1,10 @@
 use crate::scrape_four_bytes::FourBytes;
 use serde_json;
 use std::collections::HashMap;
+use std::fs::File;
 
 pub fn load_sigs() -> Result<Vec<FourBytes>, serde_json::Error> {
-    let file = std::fs::File::open("four_bytes.json").unwrap();
+    let file = File::open("four_bytes.json").unwrap();
     let reader = std::io::BufReader::new(file);
 
     let signatures: Vec<FourBytes> = serde_json::from_reader(reader)?;

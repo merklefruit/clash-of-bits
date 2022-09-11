@@ -1,12 +1,15 @@
 use std::fs::File;
 use std::{io::Write, path::Path};
 
+mod cli;
 mod find;
 mod load_sigs;
 mod scrape_four_bytes;
 mod tokenize;
 
 fn main() {
+    let args = cli::get_args();
+
     if !Path::new("four_bytes.json").exists() {
         println!("four_bytes.json not found. Running lazy scraper...");
 
@@ -14,6 +17,8 @@ fn main() {
             Ok(_) => println!("Scraping complete!"),
             Err(e) => println!("Scraping failed: {}", e),
         }
+    } else {
+        println!("four_bytes.json found. Proceeding.");
     }
 
     match load_sigs::load_sigs() {
