@@ -18,16 +18,16 @@ This is a simple weekend project meant as a fun way for me to learn Rust, so the
 When writing programs that target the EVM, such as all Solidity smart-contracts, we declare functions using the `function` keyword. The function name is followed by a list of parameters, and a return type. For example:
 
 ```solidity
-    function foo(uint256 a, uint256 b) public returns (uint256) {
-        return a + b;
-    }
+function foo(uint256 a, uint256 b) public returns (uint256) {
+    return a + b;
+}
 ```
 
 This of course is only the human-readable version, that needs to be compiled into the EVM bytecode. To perform this translation, the compiler chooses a 4-bytes identifier for the function, called "selector". This is obtained by taking the first 4 bytes of the Keccak-256 hash of the function signature, which is the function name and the types of the parameters.
 For instance, the function `foo` above has the signature `foo(uint256,uint256)`.
 
 ```solidity
-    bytes32 hash = keccak256(abi.encodePacked("foo(uint256,uint256)"));
+bytes32 hash = keccak256(abi.encodePacked("foo(uint256,uint256)"));
 ```
 
 `hash = 0x04bc52f87805d1b821cdd5f2eb95b2de798c17c056327397770e63e32b29a3ae`. The first 4 bytes of this hash are `0x04bc52f8`, which is our function selector.
