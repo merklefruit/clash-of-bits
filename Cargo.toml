@@ -1,5 +1,5 @@
 [package]
-name = "clash-of-bits"
+name = "clash_of_bits"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,4 +7,7 @@ edition = "2021"
 
 [dependencies]
 ethers = { git = "https://github.com/gakonst/ethers-rs" }
+reqwest = { version = "0.11.11", features = ["blocking"] }
+tokio = { version = "1.21.0", features = ["full"] }
 rand = "0.8.5"
+serde = "1.0.144"
