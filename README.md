@@ -6,7 +6,7 @@ This is a simple weekend project meant as a fun way for me to learn Rust, so the
 
 1. Lazy-scrape the [4Bytes](https://www.4byte.directory/) database for all known function signatures, and save them locally in a json file. (Done)
 2. Load the full results into a hash map. (Done)
-3. Tokenize function names and separate into words using regexes and heuristics.
+3. Tokenize function names and separate into words using regexes and heuristics. (Done)
 4. Use Markov chains to generate new function names based on the existing ones.
 5. Check if the generated function name clashes with a known function signature.
 6. Repeat steps 4 & 5 billions of times and collect results

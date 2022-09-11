@@ -12,7 +12,7 @@ pub fn load_sigs() -> Result<Vec<FourBytes>, serde_json::Error> {
     Ok(signatures)
 }
 
-pub fn fill_hashmap(sigs: Vec<FourBytes>) -> HashMap<String, String> {
+pub fn fill_hashmap(sigs: &Vec<FourBytes>) -> HashMap<String, String> {
     let mut map: HashMap<String, String> = HashMap::new();
 
     for sig in sigs {
@@ -20,4 +20,14 @@ pub fn fill_hashmap(sigs: Vec<FourBytes>) -> HashMap<String, String> {
     }
 
     map
+}
+
+pub fn get_text_sigs(sigs: &Vec<FourBytes>) -> Vec<String> {
+    let mut text_sigs: Vec<String> = Vec::new();
+
+    for sig in sigs {
+        text_sigs.push(sig.text_signature.clone());
+    }
+
+    text_sigs
 }
