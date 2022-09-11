@@ -1,7 +1,6 @@
-use std::io::Write;
-
 use reqwest::Result;
 use serde::Deserialize;
+use std::io::Write;
 
 #[derive(Deserialize)]
 struct ApiResponse {
@@ -10,12 +9,11 @@ struct ApiResponse {
 }
 
 #[derive(Deserialize)]
-struct FourBytes {
+pub struct FourBytes {
     id: u32,
     created_at: String,
-    text_signature: String,
-    hex_signature: String,
-    bytes_signature: String,
+    pub text_signature: String,
+    pub hex_signature: String,
 }
 
 struct SignaturesApi {
@@ -77,7 +75,7 @@ impl Iterator for SignaturesApi {
 }
 
 pub fn scrape_four_bytes() -> Result<()> {
-    println!("Scraping 4bytes signatures. This may take a while...");
+    println!("Scraping 4bytes signatures. This will take a few hours...");
 
     let file = std::fs::File::create("four_bytes.json").unwrap();
     let mut writer = std::io::BufWriter::new(file);
