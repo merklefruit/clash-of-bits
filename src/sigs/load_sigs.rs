@@ -13,7 +13,8 @@ pub fn load_sigs() -> Result<Vec<FourBytes>, serde_json::Error> {
     Ok(signatures)
 }
 
-pub fn fill_hashmap(sigs: &Vec<FourBytes>) -> HashMap<String, String> {
+#[allow(dead_code)]
+pub fn text_to_hex_map(sigs: &Vec<FourBytes>) -> HashMap<String, String> {
     let mut map: HashMap<String, String> = HashMap::new();
 
     for sig in sigs {

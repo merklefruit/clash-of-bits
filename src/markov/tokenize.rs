@@ -55,7 +55,7 @@ fn filter_unique(vec: Vec<String>) -> Vec<String> {
         .into_iter()
         .collect();
 
-    println!("Found {} unique words", unique.len());
+    println!("Found and collected {} unique words", unique.len());
 
     unique
 }
