@@ -42,7 +42,7 @@ In fact, the intentional reuse of function selectors is a known attack vector, b
 
 ### What is a Markov Chain? Why am I using it?
 
-A Markov chain is a mathematical model that describes a sequence of possible events in which the probability of each event depends only on the state attained in the previous event. In other words, it's a model that describes the probability of a sequence of events, where the probability of each event depends only on the previous event.
+A Markov chain is a mathematical model that describes a sequence of possible events in which the probability of each event depends only on the state attained in the previous event.
 
 In this case, I'm using a Markov chain to generate new function names based on the existing ones. To generate a new function name, I look at all n-grams (that is, all sequences of n characters) in the existing corpus of function names, and figure out what is the most likely n-gram to follow each one. Let's take this example:
 
