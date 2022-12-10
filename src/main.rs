@@ -6,11 +6,12 @@ mod sigs;
 mod utils;
 
 use markov::{markov as mkv, tokenize};
-use sigs::{load_sigs, scrape_four_bytes};
+use sigs::{load_sigs, scrape_four_bytes, utils as sig_utils};
 
 fn main() {
-    // let args = utils::cli::get_args();
-    // let mode = args.mode;
+    let args = utils::cli::get_args();
+    let target = args.target_function;
+    let target_selector = sig_utils::get_selector(&target);
 
     if !Path::new("four_bytes.json").exists() {
         println!("four_bytes.json not found. Running lazy scraper...");
@@ -46,6 +47,20 @@ fn main() {
     }
 
     let markov = mkv::MarkovEngine::new(3, "words.txt");
-    let fn_name = markov.generate_one();
+    let mut fn_name = markov.generate_one();
     println!("Generated function name: {}", fn_name);
+
+    // generate random function names until the selector matches the cli argument
+    let mut count = 0;
+    while sig_utils::get_selector(&format!("{}()", fn_name)) != target_selector {
+        fn_name = markov.generate_one();
+        count += 1;
+
+        if count % 1000000 == 0 {
+            print!("\rGenerated {}M function names so far...", count / 1000000);
+        }
+    }
+
+    println!("Match found: {}", fn_name);
+    println!("Generated {} function names before finding a match.", count);
 }

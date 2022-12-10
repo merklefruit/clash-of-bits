@@ -22,6 +22,8 @@ impl MarkovEngine {
         }
         println!("Corpus length: {} bytes", corpus.len());
 
+        let start = std::time::Instant::now();
+
         // split the corpus into ngrams of the given order
         let all_ngrams = corpus
             .chars()
@@ -63,7 +65,11 @@ impl MarkovEngine {
             ngrams_map.insert(ngram, following_ngrams);
         }
 
-        println!("Created n-grams map with {} entries", ngrams_map.len());
+        println!(
+            "Created n-grams map with {} entries in {} min",
+            ngrams_map.len(),
+            start.elapsed().as_secs() / 60
+        );
 
         Self {
             order,

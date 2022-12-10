@@ -2,8 +2,7 @@ use clap::Parser;
 
 #[derive(Parser)]
 pub struct Cli {
-    #[clap(short = 'm', long)]
-    pub mode: String,
+    pub target_function: String,
 }
 
 #[allow(dead_code)]
